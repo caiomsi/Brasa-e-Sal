@@ -1,5 +1,6 @@
 // Caixa / Admin — mesas, fechamento do dia, despesas, cardápio.
 import { db, T, brl, esc, $, $$, todayISO, STATIONS } from './supabase.js';
+import { seedDemo, clearAll } from './demo-data.js';
 
 const PIN = '2468'; // demo only — front-end gate, not real security
 
@@ -189,6 +190,38 @@ $('#miAdd').onclick = async () => {
   await db.from(T.items).insert({ nome, categoria, station, preco, custo, ordem: 99 });
   ['miNome', 'miCat', 'miPreco', 'miCusto'].forEach((id) => $('#' + id).value = '');
   toast('Item adicionado ao cardápio.'); loadCardapio();
+};
+
+// ============================================================================
+// DEMO controls
+// ============================================================================
+function activeTab() { return $('.admin-tabs button.active')?.dataset.tab; }
+function refreshActive() {
+  const t = activeTab();
+  if (t === 'mesas') loadMesas();
+  else if (t === 'fechamento') loadFechamento();
+  else if (t === 'despesas') loadDespesas();
+  else if (t === 'cardapio') loadCardapio();
+}
+
+$('#demoSeed').onclick = async () => {
+  const btn = $('#demoSeed');
+  btn.disabled = true; btn.textContent = '⏳ Montando o serviço…';
+  try {
+    const r = await seedDemo();
+    toast(`Demo pronta! ${r.orders} pedidos no dia 🔥`);
+  } catch (e) { toast('Erro: ' + e.message); }
+  btn.disabled = false; btn.textContent = '🎬 Resetar demo';
+  refreshActive();
+};
+
+$('#demoClear').onclick = async () => {
+  const btn = $('#demoClear');
+  btn.disabled = true; btn.textContent = '⏳ Limpando…';
+  try { await clearAll(); toast('Tudo limpo — telas zeradas.'); }
+  catch (e) { toast('Erro: ' + e.message); }
+  btn.disabled = false; btn.textContent = '🧹 Limpar tudo';
+  refreshActive();
 };
 
 // ---- boot -------------------------------------------------------------------
