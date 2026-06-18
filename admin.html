@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caixa · Brasa &amp; Sal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- PIN gate (demo only) -->
+  <div class="gate" id="gate">
+    <div class="card">
+      <h2>Acesso do Caixa</h2>
+      <p>Área restrita — informe o PIN.<br /><small style="color:var(--muted)">(demo: <b>2468</b>)</small></p>
+      <div class="field"><input id="pin" type="password" inputmode="numeric" maxlength="6" placeholder="••••" /></div>
+      <button class="btn btn-primary btn-block" id="pinBtn">Entrar</button>
+      <div class="err" id="pinErr"></div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a href="index.html" class="brand">Brasa <span class="amp">&amp;</span> Sal</a>
+    <nav>
+      <a href="cozinha.html">🍳 Cozinha</a>
+      <a href="balcao.html">🛎️ Balcão</a>
+      <a href="admin.html" class="active">📊 Caixa</a>
+    </nav>
+  </header>
+
+  <main class="wrap" id="app" hidden>
+    <div class="admin-tabs">
+      <button data-tab="mesas" class="active">🍽️ Mesas</button>
+      <button data-tab="fechamento">💰 Fechamento do dia</button>
+      <button data-tab="despesas">🧾 Despesas</button>
+      <button data-tab="cardapio">📋 Cardápio</button>
+    </div>
+
+    <!-- MESAS -->
+    <section class="panel-sec" id="sec-mesas">
+      <h2 style="margin-bottom:1rem">Mesas abertas</h2>
+      <div class="table-grid" id="mesaGrid"></div>
+    </section>
+
+    <!-- FECHAMENTO -->
+    <section class="panel-sec hidden" id="sec-fechamento">
+      <div class="station-head" style="padding-top:0">
+        <h2>Fechamento do dia — <span id="fdate"></span></h2>
+        <button class="btn btn-primary" id="closeDayBtn">🔒 Fechar o dia</button>
+      </div>
+      <div class="kpis">
+        <div class="kpi bruto card"><div class="lbl">Faturamento bruto</div><div class="val" id="kBruto">R$ 0,00</div></div>
+        <div class="kpi cmv card"><div class="lbl">Custo dos produtos (CMV)</div><div class="val" id="kCmv">R$ 0,00</div></div>
+        <div class="kpi desp card"><div class="lbl">Despesas do dia</div><div class="val" id="kDesp">R$ 0,00</div></div>
+        <div class="kpi liquido card"><div class="lbl">Lucro líquido</div><div class="val" id="kLiq">R$ 0,00</div></div>
+      </div>
+      <div class="card" style="padding:1.2rem;overflow:auto">
+        <h3 style="margin-bottom:.8rem;font-size:1.1rem">Itens vendidos hoje</h3>
+        <table class="data" id="salesTable"><thead><tr>
+          <th>Item</th><th class="num">Qtd</th><th class="num">Preço</th><th class="num">Custo</th><th class="num">Subtotal</th>
+        </tr></thead><tbody></tbody></table>
+      </div>
+      <p style="color:var(--muted);font-size:.84rem;margin-top:.8rem">
+        Líquido = Bruto − CMV − Despesas. Considera itens não cancelados de hoje.
+      </p>
+      <div id="closedNote" style="margin-top:1rem"></div>
+    </section>
+
+    <!-- DESPESAS -->
+    <section class="panel-sec hidden" id="sec-despesas">
+      <h2 style="margin-bottom:1rem">Despesas de hoje</h2>
+      <div class="card" style="padding:1.2rem;margin-bottom:1.4rem">
+        <div class="form-row">
+          <div class="field" style="margin:0"><label>Descrição</label><input id="expDesc" placeholder="Ex: Carnes, gás, funcionário" /></div>
+          <div class="field" style="margin:0"><label>Valor (R$)</label><input id="expVal" type="number" step="0.01" min="0" placeholder="0,00" /></div>
+          <button class="btn btn-primary" id="expAdd">+ Adicionar</button>
+        </div>
+      </div>
+      <div class="card" style="padding:1.2rem;overflow:auto">
+        <table class="data" id="expTable"><thead><tr>
+          <th>Descrição</th><th class="num">Valor</th><th></th>
+        </tr></thead><tbody></tbody></table>
+      </div>
+    </section>
+
+    <!-- CARDÁPIO -->
+    <section class="panel-sec hidden" id="sec-cardapio">
+      <h2 style="margin-bottom:1rem">Itens do cardápio</h2>
+      <div class="card" style="padding:1.2rem;margin-bottom:1.4rem">
+        <h3 style="font-size:1.05rem;margin-bottom:.8rem">Novo item</h3>
+        <div class="form-row">
+          <div class="field" style="margin:0"><label>Nome</label><input id="miNome" placeholder="Ex: Picanha na brasa" /></div>
+          <div class="field" style="margin:0"><label>Categoria</label><input id="miCat" placeholder="Ex: Churrasco" /></div>
+          <div class="field" style="margin:0"><label>Estação</label>
+            <select id="miStation"><option value="cozinha">🍳 Cozinha</option><option value="churrasqueira">🔥 Churrasqueira</option><option value="bar">🍺 Bar</option></select></div>
+          <div class="field" style="margin:0"><label>Preço (R$)</label><input id="miPreco" type="number" step="0.01" min="0" /></div>
+          <div class="field" style="margin:0"><label>Custo (R$)</label><input id="miCusto" type="number" step="0.01" min="0" /></div>
+          <button class="btn btn-primary" id="miAdd">+ Adicionar</button>
+        </div>
+      </div>
+      <div class="card" style="padding:1.2rem;overflow:auto">
+        <table class="data" id="menuTable"><thead><tr>
+          <th>Item</th><th>Estação</th><th class="num">Preço</th><th class="num">Custo</th><th class="num">Margem</th><th></th>
+        </tr></thead><tbody></tbody></table>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

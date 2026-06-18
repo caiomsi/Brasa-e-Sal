@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Cardápio · Brasa &amp; Sal</title>
+  <meta name="description" content="Cardápio digital da churrascaria Brasa & Sal — peça direto da mesa." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand">Brasa <span class="amp">&amp;</span> Sal</a>
+    <nav>
+      <span class="mesa-badge" id="mesaBadge">Mesa <b id="mesaNum">—</b></span>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="menu-head">
+      <div>
+        <span class="eyebrow">Cardápio digital</span>
+        <h1 style="font-size:2rem;margin-top:.3rem">Escolha &amp; peça da sua mesa</h1>
+      </div>
+      <div id="mesaPicker"></div>
+    </div>
+
+    <nav class="cat-bar" id="catBar"></nav>
+    <div class="menu-grid" id="menuGrid">
+      <div class="empty"><div class="big">🔥</div>Carregando o cardápio…</div>
+    </div>
+  </main>
+
+  <!-- Cart drawer -->
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-inner">
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-foot">
+        <div class="cart-total">Total: <b id="cartTotal">R$ 0,00</b></div>
+        <button class="btn btn-primary" id="sendBtn">Enviar pedido →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module" src="js/cardapio.js"></script>
+</body>
+</html>

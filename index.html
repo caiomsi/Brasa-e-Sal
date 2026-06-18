@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brasa &amp; Sal — Sistema de Churrascaria</title>
+  <meta name="description" content="Sistema completo de churrascaria: cardápio digital, comanda em tempo real, telas de cozinha e churrasqueira, balcão e fechamento de caixa." />
+  <meta property="og:title" content="Brasa & Sal — Sistema de Churrascaria" />
+  <meta property="og:description" content="Pedido → cozinha & churrasqueira → balcão → fechamento do dia. Tudo em tempo real." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand">Brasa <span class="amp">&amp;</span> Sal</a>
+    <nav>
+      <a href="cardapio.html">Cardápio</a>
+      <a href="cozinha.html">Cozinha</a>
+      <a href="churrasqueira.html">Churrasqueira</a>
+      <a href="balcao.html">Balcão</a>
+      <a href="admin.html">Caixa</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Sistema de churrascaria · tempo real</span>
+      <h1>Brasa <span class="amp">&amp;</span> Sal</h1>
+      <p>Do pedido na mesa ao fechamento do caixa — cardápio digital, comanda ao vivo
+         na cozinha e na churrasqueira, aviso no balcão e o lucro do dia calculado sozinho.</p>
+    </section>
+
+    <div class="flow">
+      <span>📱 Pedido</span><span class="arr">→</span>
+      <span>🍳 Cozinha / 🔥 Churrasqueira</span><span class="arr">→</span>
+      <span>✓ Pronto</span><span class="arr">→</span>
+      <span>🛎️ Balcão</span><span class="arr">→</span>
+      <span>💰 Fechamento</span>
+    </div>
+
+    <section class="role-grid">
+      <a class="role-card card" href="cardapio.html?mesa=3">
+        <span class="ico">📱</span>
+        <h3>Cardápio &amp; Pedido</h3>
+        <p>Cliente pede pelo QR da mesa, ou o garçom lança no celular. Cai direto na produção.</p>
+        <span class="go">Abrir cardápio (mesa 3) →</span>
+      </a>
+      <a class="role-card card" href="cozinha.html">
+        <span class="ico">🍳</span>
+        <h3>Cozinha</h3>
+        <p>Comandas da cozinha em tempo real, com tempo de espera e botão “Pronto”.</p>
+        <span class="go">Abrir tela da cozinha →</span>
+      </a>
+      <a class="role-card card" href="churrasqueira.html">
+        <span class="ico">🔥</span>
+        <h3>Churrasqueira</h3>
+        <p>Só os itens da brasa, separados automaticamente para quem está na grelha.</p>
+        <span class="go">Abrir tela da churrasqueira →</span>
+      </a>
+      <a class="role-card card" href="balcao.html">
+        <span class="ico">🛎️</span>
+        <h3>Balcão</h3>
+        <p>Recebe o aviso sonoro assim que um prato fica pronto, pronto para entregar.</p>
+        <span class="go">Abrir tela do balcão →</span>
+      </a>
+      <a class="role-card card" href="admin.html">
+        <span class="ico">📊</span>
+        <h3>Caixa &amp; Fechamento</h3>
+        <p>Fecha as mesas, soma o bruto, desconta CMV e despesas e mostra o líquido do dia.</p>
+        <span class="go">Abrir o caixa →</span>
+      </a>
+    </section>
+
+    <section class="card" style="padding:1.6rem;margin-bottom:3rem">
+      <h2 style="font-size:1.3rem;margin-bottom:.6rem">Como testar o fluxo ao vivo</h2>
+      <p style="color:var(--cream-dim);font-size:.94rem">
+        Abra o <b>Cardápio</b> e a <b>Cozinha</b> (e/ou <b>Churrasqueira</b>) em janelas separadas.
+        Faça um pedido — ele aparece na hora na produção. Aperte <b>“Pronto”</b> e veja cair no
+        <b>Balcão</b> com som. Depois, no <b>Caixa</b>, feche as mesas e o dia para ver o lucro líquido.
+      </p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    Brasa &amp; Sal — demo de sistema por <a href="https://work.caiomsi.com" style="color:var(--ember-2)">MSI Studio</a>.
+    Marca fictícia para portfólio.
+  </footer>
+</body>
+</html>
